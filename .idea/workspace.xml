@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3a976c90-b4ef-4bf5-82f3-9f3f54d0353e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/description.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/project-template.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/file-processing-application.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/numbers.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/file-processing-application/fpa/com/base/FileWork.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/file-processing-application/fpa/com/base/Main.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/file-processing-application/fpa/com/base/Menu.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/fpa/com/base/FileWork.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/fpa/com/base/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/fpa/com/base/Menu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/versionLog.md" afterDir="false" />
-    </list>
+    <list default="true" id="3a976c90-b4ef-4bf5-82f3-9f3f54d0353e" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

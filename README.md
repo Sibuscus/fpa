@@ -3,7 +3,8 @@
 ----
 ## What is the FPA?
 
-The FPA is a command-line application made in Java that allows the user to manipulate text files with numbers.
+The FPA is a command-line application made in the Java language that allows the user to manipulate text files with numbers.
+Program used to build and run: Intellij Community 
 
 ----
 ##Limits (*Incomplete*)
