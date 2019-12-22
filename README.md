@@ -7,7 +7,7 @@ The FPA is a command-line application made in the Java language that allows the 
 Program used to build and run: Intellij Community 
 
 ----
-##Limits (*Incomplete*)
+## Limits (*Incomplete*)
 1. Each number is presented as a sequence of digits (0-9) and must not start with 0.
 2. Each number in each line mustn't start with space or tab, but must be separated by one. There are no limits on how many numbers a line can hold.
 
@@ -18,9 +18,9 @@ numbers.txt example:
 
 ----
 ## Usage (*Incomplete*)
-####1. The program asks the user to give a path to a text file.
+#### 1. The program asks the user to give a path to a text file.
 
-####2. Menu Options
+#### 2. Menu Options
 
 * Validate file contents
 
