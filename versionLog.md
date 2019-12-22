@@ -11,3 +11,5 @@
 * Added a simple file reader that stores numbers.txt lines into an ArrayList.
 * Split the ArrayList with the .get() method to get the indexes. 
 * Added zero checker, to check if the number starts with a zero.
+
+## V0.3
