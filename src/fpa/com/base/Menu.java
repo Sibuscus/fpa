@@ -36,16 +36,21 @@ public class Menu
         Integer choice;
         String path;
         Scanner s = new Scanner(System.in);
+        boolean isSaved = false;
+
         //User input
         System.out.print("Specify the file's path:");
         path = s.nextLine();
+
         //Check for correct file path/directory
         if (!isPathValid(path))
         {
             System.out.println("You've specified an invalid file path");
             exit(0);
         }
+
         File f = new File(path);
+
         System.out.println("-----------------------------------------------------------");
         System.out.println("Working with file: " + f.getName());
         System.out.println("1. Validate file contents.");
@@ -53,10 +58,34 @@ public class Menu
         System.out.println("3. Switch indexes.");
         System.out.println("4. CRUD operations.");
         System.out.println("5. Save file");
+        System.out.println("6. Exit (Saved: " +isSaved +")" );
         System.out.println("NOTE: The file will not be saved unless you choose to save the file");
         System.out.println("-----------------------------------------------------------");
-        System.out.print("Choice:");
-        choice = s.nextInt();
+        do
+        {
+            System.out.println("Choice:");
+            choice = s.nextInt();
+
+            switch (choice)
+            {
+                case 1:
+                    FileWork.FValidation(f);
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                default:
+                    System.out.println("Invalid choice");
+            }
+        }
+        while (choice < 1 || choice > 6);
     }
 
     public static boolean isPathValid(String Path)
