@@ -2,6 +2,8 @@ package fpa.com.base;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import static java.lang.System.exit;
 
@@ -38,6 +40,8 @@ public class Menu
         Scanner s = new Scanner(System.in);
         boolean isSaved = false;
 
+        FileWork fw = new FileWork();
+        List<String[]> currentList = new ArrayList<>();
         //User input
         System.out.print("Specify the file's path:");
         path = s.nextLine();
@@ -51,27 +55,28 @@ public class Menu
 
         File f = new File(path);
 
-        System.out.println("-----------------------------------------------------------");
-        System.out.println("Working with file: " + f.getName());
-        System.out.println("1. Validate file contents.");
-        System.out.println("2. Switch lines.");
-        System.out.println("3. Switch indexes.");
-        System.out.println("4. CRUD operations.");
-        System.out.println("5. Save file");
-        System.out.println("6. Exit (Saved: " +isSaved +")" );
-        System.out.println("NOTE: The file will not be saved unless you choose to save the file");
-        System.out.println("-----------------------------------------------------------");
         do
         {
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("Working with file: " + f.getName());
+            System.out.println("1. Validate file contents.");
+            System.out.println("2. Switch lines.");
+            System.out.println("3. Switch indexes.");
+            System.out.println("4. CRUD operations.");
+            System.out.println("5. Save file");
+            System.out.println("6. Exit (Saved: " +isSaved +")" );
+            System.out.println("NOTE: The file will not be saved unless you choose to save the file");
+            System.out.println("-----------------------------------------------------------");
             System.out.println("Choice:");
             choice = s.nextInt();
 
             switch (choice)
             {
                 case 1:
-                    FileWork.FValidation(f);
+                    currentList = fw.FValidation(f);
                     break;
                 case 2:
+                    currentList = fw.lineSwitcher(currentList);
                     break;
                 case 3:
                     break;
@@ -85,7 +90,7 @@ public class Menu
                     System.out.println("Invalid choice");
             }
         }
-        while (choice < 1 || choice > 6);
+        while (choice != 6);
     }
 
     public static boolean isPathValid(String Path)

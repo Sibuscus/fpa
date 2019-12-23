@@ -13,3 +13,10 @@
 * Added zero checker, to check if the number starts with a zero.
 
 ## V0.3
+* Changed List<String> to List<String[]>
+* Improved menu and made it working differently
+* Improved and fixed validation method by correcting the line reader
+* Added a line switcher and a currentList 
+> The line switcher only works If the Menu's choice 1 has been chosen. Otherwise it will throw up an exception [Will look into it in later versions]
+> The line switcher's first line's index starts from 0.
+> currentList keeps track of the current CHANGED list, so if the user doesn't choose to save, it won't.
