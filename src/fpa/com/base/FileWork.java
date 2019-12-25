@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class FileWork
 {
-    public List<String[]> FValidation(File f)
+    public List<String[]> FValidation(List<String[]> file)
     {
         //Variables
         List<String[]> numbers = new ArrayList<>();
@@ -18,27 +18,18 @@ public class FileWork
 
         try
         {
-            Scanner s = new Scanner(f);
             System.out.println("---------------------------------------------------------------------------");
-            while(s.hasNext())
+            for(i = 0; i < file.size(); i++)
             {
-                if(s.hasNext())
+                lineNum = file.get(i);
+                for(String str : lineNum)
                 {
-                   line = s.nextLine();
-                   lineNum = line.split("\\s+");
-                   for(String str : lineNum)
-                   {
-                       if(!isNumberValid(str))
-                       {
-                           System.out.println("Invalid number [" +str +"] at line: " +line);
-                       }
-                   }
-                   numbers.add(lineNum);
+                    if(!isNumberValid(str))
+                    {
+                        System.out.println("Invalid number [" +str +"] at line: " +(Arrays.toString(file.get(i))));
+                    }
                 }
-                else
-                {
-                    s.next();
-                }
+                numbers.add(lineNum);
             }
             System.out.println("---------------------------------------------------------------------------");
             System.out.println("The file's been processed. If there are any errors they are shown above.");
@@ -47,7 +38,6 @@ public class FileWork
         {
             System.out.println(e);
         }
-
         return numbers;
     }
 
@@ -79,6 +69,5 @@ public class FileWork
     {
         return s.matches("\\d+") && s.charAt(0) != '0';
     }
-
 
 }

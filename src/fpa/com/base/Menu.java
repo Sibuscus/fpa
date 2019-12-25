@@ -10,6 +10,7 @@ import static java.lang.System.exit;
 
 public class Menu
 {
+    //Intro
     public static void printFMsg()
     {
         System.out.println("-----------------------------------------------------------");
@@ -37,11 +38,14 @@ public class Menu
         //Variables
         Integer choice;
         String path;
-        Scanner s = new Scanner(System.in);
+        String line;
+        String[] lineNum;
         boolean isSaved = false;
 
+        Scanner s = new Scanner(System.in);
         FileWork fw = new FileWork();
         List<String[]> currentList = new ArrayList<>();
+
         //User input
         System.out.print("Specify the file's path:");
         path = s.nextLine();
@@ -54,6 +58,29 @@ public class Menu
         }
 
         File f = new File(path);
+
+        //Read the file beforehand and put it in the ArrayList[] currentList
+        try
+        {
+            Scanner scanner = new Scanner(f);
+            while (scanner.hasNext())
+            {
+                if(scanner.hasNext())
+                {
+                    line = scanner.nextLine();
+                    lineNum = line.split("\\s+");
+                    currentList.add(lineNum);
+                }
+                else
+                {
+                    scanner.hasNext();
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
 
         do
         {
@@ -73,7 +100,7 @@ public class Menu
             switch (choice)
             {
                 case 1:
-                    currentList = fw.FValidation(f);
+                    currentList = fw.FValidation(currentList);
                     break;
                 case 2:
                     currentList = fw.lineSwitcher(currentList);

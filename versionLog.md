@@ -19,4 +19,8 @@
 * Added a line switcher and a currentList 
 > The line switcher only works If the Menu's choice 1 has been chosen. Otherwise it will throw up an exception [Will look into it in later versions]
 > The line switcher's first line's index starts from 0.
-> currentList keeps track of the current CHANGED list, so if the user doesn't choose to save, it won't.
+> currentList keeps track of the current CHANGED list, so if the user doesn't choose to save, it won't. [Not implemented]
+
+## V0.4
+* Made it so the file isn't read everytime, it's put in an ArrayList instead at the beginning
+* Fixed currentList and V0.3's error throwing if option 1 is not selected first
