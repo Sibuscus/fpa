@@ -45,19 +45,65 @@ public class FileWork
     {
         Scanner s = new Scanner(System.in);
         int[] input = new int[2];
+        System.out.println("---------------------------------------------------------------------------");
+        //Prints the array
         for (String[] arr : list)
         {
             System.out.println(Arrays.toString(arr));
         }
-
+        //User input
         System.out.println("Enter a line you'd like to replace:");
         input[0] = s.nextInt();
         System.out.println("Enter a line you'd like to replace it with:");
         input[1] = s.nextInt();
+        System.out.println("---------------------------------------------------------------------------");
 
+        //Line switching work
         String[] temp = list.get(input[0]);
         list.set(input[0], list.get(input[1]));
         list.set(input[1], temp);
+        for(String[] arr : list)
+        {
+            System.out.println(Arrays.toString(arr));
+        }
+        return list;
+    }
+
+    public List<String[]> numberSwitcher(List<String[]> list)
+    {
+        Scanner s = new Scanner(System.in);
+        int[] input = new int[4];
+        System.out.println("---------------------------------------------------------------------------");
+        //Prints the array
+        for (String[] arr : list)
+        {
+            System.out.println(Arrays.toString(arr));
+        }
+        //User input
+        System.out.print("Enter a line for the first number:");
+        input[0] = s.nextInt();
+        System.out.print("Enter the index of the number in " +input[0] +":");
+        input[1] = s.nextInt();
+        System.out.print("Enter a line for the second number:");
+        input[2] = s.nextInt();
+        System.out.print("Enter the index of the number in " +input[2] +":");
+        input[3] = s.nextInt();
+
+        //input N   -   Line N
+        //0         -   line 1
+        //1         -   number 1
+        //2         -   line 2
+        //3         -   number 2
+
+        String[] firstLine = list.get(input[0]);
+        String[] secondLine = list.get(input[2]);
+        String[] temp = firstLine.clone();
+
+        firstLine[input[1]] = secondLine[input[3]];
+        secondLine[input[3]] = temp[input[1]];
+
+        list.set(input[0], firstLine);
+        list.set(input[2], secondLine);
         for(String[] arr : list)
         {
             System.out.println(Arrays.toString(arr));

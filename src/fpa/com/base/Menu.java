@@ -81,7 +81,7 @@ public class Menu
         {
             System.out.println(e);
         }
-
+        //---------------------------------------MAIN MENU----------------------------------------
         do
         {
             System.out.println("-----------------------------------------------------------");
@@ -106,6 +106,7 @@ public class Menu
                     currentList = fw.lineSwitcher(currentList);
                     break;
                 case 3:
+                    currentList = fw.numberSwitcher(currentList);
                     break;
                 case 4:
                     break;

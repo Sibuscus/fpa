@@ -24,3 +24,6 @@
 ## V0.4
 * Made it so the file isn't read everytime, it's put in an ArrayList instead at the beginning
 * Fixed currentList and V0.3's error throwing if option 1 is not selected first
+
+## V0.5
+* Added a number switcher
