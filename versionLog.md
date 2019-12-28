@@ -27,3 +27,6 @@
 
 ## V0.5
 * Added a number switcher
+
+## V0.6
+* Added a file saver

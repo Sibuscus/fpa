@@ -36,7 +36,7 @@ public class Menu
     private static void FilePath()
     {
         //Variables
-        Integer choice;
+        Integer choice, i;
         String path;
         String line;
         String[] lineNum;
@@ -111,6 +111,7 @@ public class Menu
                 case 4:
                     break;
                 case 5:
+                    isSaved = fw.saveToFile(path, currentList);
                     break;
                 case 6:
                     break;

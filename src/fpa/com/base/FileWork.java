@@ -1,6 +1,7 @@
 package fpa.com.base;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -116,4 +117,30 @@ public class FileWork
         return s.matches("\\d+") && s.charAt(0) != '0';
     }
 
+    public boolean saveToFile(String path, List<String[]> list)
+    {
+        try
+        {
+            FileWriter writer = new FileWriter(path);
+            for (String[] line : list)
+            {
+                String append = "";
+                for (String numb : line)
+                {
+                    writer.write(append + numb);
+                    append = ",";
+                }
+                writer.write("\n");
+            }
+            writer.flush();
+            writer.close();
+            System.out.println("File saved successfully");
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+            return false;
+        }
+        return true;
+    }
 }
