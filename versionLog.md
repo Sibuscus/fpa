@@ -30,3 +30,13 @@
 
 ## V0.6
 * Added a file saver
+> Appender is a comma instead of white space for testing purposes
+
+## V0.7
+* Added a saving system
+> Corrected the appender
+* Added checker for inputting out of bounds lines/numbers
+> So no longer an exception will be thrown, but the user can correct
+> Started adding specific exception handlers
+* File path input now asks for a file repeatedly until a correct path is input
+* File will not save if the text file is Invalid.

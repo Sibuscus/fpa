@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class FileWork
 {
-    public List<String[]> FValidation(List<String[]> file)
+    public boolean FValidation(List<String[]> file, boolean isSaved)
     {
         //Variables
         List<String[]> numbers = new ArrayList<>();
@@ -34,15 +34,45 @@ public class FileWork
             }
             System.out.println("---------------------------------------------------------------------------");
             System.out.println("The file's been processed. If there are any errors they are shown above.");
+            if(isSaved)
+            {
+                isSaved = false;
+            }
         }
         catch (Exception e)
         {
             System.out.println(e);
         }
-        return numbers;
+        return isSaved;
     }
 
-    public List<String[]> lineSwitcher (List<String[]> list)
+    private boolean FValidation(List<String[]> list)
+    {
+        Integer i;
+        boolean isGood = true;
+        String[] lineNum;
+        try
+        {
+            for(i=0; i<list.size(); i++)
+            {
+                lineNum = list.get(i);
+                for(String str : lineNum)
+                {
+                    if(!isNumberValid(str))
+                    {
+                        isGood = false;
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+        return isGood;
+    }
+
+    public boolean lineSwitcher (List<String[]> list, boolean isSaved)
     {
         Scanner s = new Scanner(System.in);
         int[] input = new int[2];
@@ -52,12 +82,24 @@ public class FileWork
         {
             System.out.println(Arrays.toString(arr));
         }
-        //User input
-        System.out.println("Enter a line you'd like to replace:");
-        input[0] = s.nextInt();
-        System.out.println("Enter a line you'd like to replace it with:");
-        input[1] = s.nextInt();
-        System.out.println("---------------------------------------------------------------------------");
+        try
+        {
+            do
+            {
+                //User input
+                System.out.println("Enter a line you'd like to replace:");
+                input[0] = s.nextInt();
+                System.out.println("Enter a line you'd like to replace it with:");
+                input[1] = s.nextInt();
+                System.out.println("---------------------------------------------------------------------------");
+            }while (input[0] < 0 || input[0] >= list.size() || input[1] < 0 || input[1] >= list.size());
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+            return isSaved;
+        }
+
 
         //Line switching work
         String[] temp = list.get(input[0]);
@@ -67,10 +109,14 @@ public class FileWork
         {
             System.out.println(Arrays.toString(arr));
         }
-        return list;
+        if(isSaved)
+        {
+            isSaved = false;
+        }
+        return isSaved;
     }
 
-    public List<String[]> numberSwitcher(List<String[]> list)
+    public boolean numberSwitcher(List<String[]> list, boolean isSaved)
     {
         Scanner s = new Scanner(System.in);
         int[] input = new int[4];
@@ -80,15 +126,25 @@ public class FileWork
         {
             System.out.println(Arrays.toString(arr));
         }
-        //User input
-        System.out.print("Enter a line for the first number:");
-        input[0] = s.nextInt();
-        System.out.print("Enter the index of the number in " +input[0] +":");
-        input[1] = s.nextInt();
-        System.out.print("Enter a line for the second number:");
-        input[2] = s.nextInt();
-        System.out.print("Enter the index of the number in " +input[2] +":");
-        input[3] = s.nextInt();
+        try
+        {
+            do
+            {
+                //User input
+                System.out.print("Enter a line for the first number:");
+                input[0] = s.nextInt();
+                System.out.print("Enter the index of the number in " +input[0] +":");
+                input[1] = s.nextInt();
+                System.out.print("Enter a line for the second number:");
+                input[2] = s.nextInt();
+                System.out.print("Enter the index of the number in " +input[2] +":");
+                input[3] = s.nextInt();
+            }while (input[0] < 0 || input[0] >= list.size() || input[2] < 0 || input[2] >= list.size());
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
 
         //input N   -   Line N
         //0         -   line 1
@@ -103,13 +159,27 @@ public class FileWork
         firstLine[input[1]] = secondLine[input[3]];
         secondLine[input[3]] = temp[input[1]];
 
-        list.set(input[0], firstLine);
-        list.set(input[2], secondLine);
+        try
+        {
+            list.set(input[0], firstLine);
+            list.set(input[2], secondLine);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+            return false;
+        }
+
         for(String[] arr : list)
         {
             System.out.println(Arrays.toString(arr));
         }
-        return list;
+
+        if(isSaved)
+        {
+            isSaved = false;
+        }
+        return isSaved;
     }
 
     private boolean isNumberValid(String s)
@@ -121,20 +191,28 @@ public class FileWork
     {
         try
         {
-            FileWriter writer = new FileWriter(path);
-            for (String[] line : list)
+            if(FValidation(list))
             {
-                String append = "";
-                for (String numb : line)
+                FileWriter writer = new FileWriter(path);
+                for (String[] line : list)
                 {
-                    writer.write(append + numb);
-                    append = ",";
+                    String append = "";
+                    for(String numb : line)
+                    {
+                        writer.write(append + numb);
+                        append = " ";
+                    }
+                    writer.write("\n");
                 }
-                writer.write("\n");
+                writer.flush();
+                writer.close();
+                System.out.println("File saved successfully");
             }
-            writer.flush();
-            writer.close();
-            System.out.println("File saved successfully");
+            else
+            {
+                System.out.println("You cannot save the file. Choose 1 to find out why.");
+                return false;
+            }
         }
         catch(Exception e)
         {

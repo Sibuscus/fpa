@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import static java.lang.System.exit;
 
 
 public class Menu
@@ -51,10 +50,10 @@ public class Menu
         path = s.nextLine();
 
         //Check for correct file path/directory
-        if (!isPathValid(path))
+        while (!isPathValid(path))
         {
-            System.out.println("You've specified an invalid file path");
-            exit(0);
+            System.out.println("Specify a correct file path:");
+            path = s.nextLine();
         }
 
         File f = new File(path);
@@ -100,13 +99,13 @@ public class Menu
             switch (choice)
             {
                 case 1:
-                    currentList = fw.FValidation(currentList);
+                    isSaved = fw.FValidation(currentList, isSaved);
                     break;
                 case 2:
-                    currentList = fw.lineSwitcher(currentList);
+                    isSaved = fw.lineSwitcher(currentList, isSaved);
                     break;
                 case 3:
-                    currentList = fw.numberSwitcher(currentList);
+                    isSaved = fw.numberSwitcher(currentList, isSaved);
                     break;
                 case 4:
                     break;
@@ -138,9 +137,9 @@ public class Menu
             }
             //Paths.get(Path); //Always returns true...
         }
-        catch (Exception e)
+        catch (SecurityException | NullPointerException e)
         {
-            System.out.println(e);
+            System.out.println("You've specified an invalid file path or do not have access to it");
             return false;
         }
         return true;
