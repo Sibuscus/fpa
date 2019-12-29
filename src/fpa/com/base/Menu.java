@@ -99,7 +99,7 @@ public class Menu
             switch (choice)
             {
                 case 1:
-                    isSaved = fw.FValidation(currentList, isSaved);
+                    isSaved = fw.listValidation(currentList, isSaved);
                     break;
                 case 2:
                     isSaved = fw.lineSwitcher(currentList, isSaved);
@@ -108,6 +108,7 @@ public class Menu
                     isSaved = fw.numberSwitcher(currentList, isSaved);
                     break;
                 case 4:
+                    crudMenu(currentList, isSaved);
                     break;
                 case 5:
                     isSaved = fw.saveToFile(path, currentList);
@@ -143,5 +144,46 @@ public class Menu
             return false;
         }
         return true;
+    }
+
+    private static void crudMenu(List<String[]> list, boolean isSaved)
+    {
+        Integer choice;
+
+        CRUDops co = new CRUDops();
+        Scanner s = new Scanner(System.in);
+
+        //CRUD Menu
+        do
+        {
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("--------------------CRUD Operations-----------------------");
+            System.out.println("1. Insert a number in a line.");
+            System.out.println("2. Read a specific number");
+            System.out.println("3. Modify a specific number");
+            System.out.println("4. Remove a number in a line");
+            System.out.println("5. Back");
+            System.out.println("-----------------------------------------------------------");
+            System.out.print("Choice:");
+            choice = s.nextInt();
+            switch (choice)
+            {
+                case 1:
+
+                    break;
+                case 2:
+                    isSaved = co.readNumber(list, isSaved);
+                    break;
+                case 3:
+                    isSaved = co.modifyNumber(list, isSaved);
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                default:
+                    System.out.println("Invalid choice");
+            }
+        }while (choice != 5);
     }
 }

@@ -9,12 +9,10 @@ import java.util.Scanner;
 
 public class FileWork
 {
-    public boolean FValidation(List<String[]> file, boolean isSaved)
+    public boolean listValidation(List<String[]> file, boolean isSaved)
     {
         //Variables
-        List<String[]> numbers = new ArrayList<>();
-        Integer i, j;
-        String line;
+        Integer i;
         String [] lineNum;
 
         try
@@ -30,14 +28,10 @@ public class FileWork
                         System.out.println("Invalid number [" +str +"] at line: " +(Arrays.toString(file.get(i))));
                     }
                 }
-                numbers.add(lineNum);
             }
             System.out.println("---------------------------------------------------------------------------");
             System.out.println("The file's been processed. If there are any errors they are shown above.");
-            if(isSaved)
-            {
-                isSaved = false;
-            }
+            isSaved = saveList(isSaved);
         }
         catch (Exception e)
         {
@@ -46,7 +40,7 @@ public class FileWork
         return isSaved;
     }
 
-    private boolean FValidation(List<String[]> list)
+    private boolean listValidation(List<String[]> list)
     {
         Integer i;
         boolean isGood = true;
@@ -84,15 +78,12 @@ public class FileWork
         }
         try
         {
-            do
-            {
-                //User input
-                System.out.println("Enter a line you'd like to replace:");
-                input[0] = s.nextInt();
-                System.out.println("Enter a line you'd like to replace it with:");
-                input[1] = s.nextInt();
-                System.out.println("---------------------------------------------------------------------------");
-            }while (input[0] < 0 || input[0] >= list.size() || input[1] < 0 || input[1] >= list.size());
+            //User input
+            System.out.println("Enter a line you'd like to replace:");
+            input[0] = s.nextInt();
+            System.out.println("Enter a line you'd like to replace it with:");
+            input[1] = s.nextInt();
+            System.out.println("---------------------------------------------------------------------------");
         }
         catch (Exception e)
         {
@@ -100,19 +91,21 @@ public class FileWork
             return isSaved;
         }
 
+        try
+        {
+            //Line switching work
+            String[] temp = list.get(input[0]);
+            list.set(input[0], list.get(input[1]));
+            list.set(input[1], temp);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+            return isSaved;
+        }
 
-        //Line switching work
-        String[] temp = list.get(input[0]);
-        list.set(input[0], list.get(input[1]));
-        list.set(input[1], temp);
-        for(String[] arr : list)
-        {
-            System.out.println(Arrays.toString(arr));
-        }
-        if(isSaved)
-        {
-            isSaved = false;
-        }
+        printList(list);
+        isSaved = saveList(isSaved);
         return isSaved;
     }
 
@@ -121,25 +114,18 @@ public class FileWork
         Scanner s = new Scanner(System.in);
         int[] input = new int[4];
         System.out.println("---------------------------------------------------------------------------");
-        //Prints the array
-        for (String[] arr : list)
-        {
-            System.out.println(Arrays.toString(arr));
-        }
+        printList(list);
         try
         {
-            do
-            {
-                //User input
-                System.out.print("Enter a line for the first number:");
-                input[0] = s.nextInt();
-                System.out.print("Enter the index of the number in " +input[0] +":");
-                input[1] = s.nextInt();
-                System.out.print("Enter a line for the second number:");
-                input[2] = s.nextInt();
-                System.out.print("Enter the index of the number in " +input[2] +":");
-                input[3] = s.nextInt();
-            }while (input[0] < 0 || input[0] >= list.size() || input[2] < 0 || input[2] >= list.size());
+            //User input
+            System.out.print("Enter a line for the first number:");
+            input[0] = s.nextInt();
+            System.out.print("Enter the index of the number in " +input[0] +":");
+            input[1] = s.nextInt();
+            System.out.print("Enter a line for the second number:");
+            input[2] = s.nextInt();
+            System.out.print("Enter the index of the number in " +input[2] +":");
+            input[3] = s.nextInt();
         }
         catch (Exception e)
         {
@@ -152,33 +138,29 @@ public class FileWork
         //2         -   line 2
         //3         -   number 2
 
-        String[] firstLine = list.get(input[0]);
-        String[] secondLine = list.get(input[2]);
-        String[] temp = firstLine.clone();
 
-        firstLine[input[1]] = secondLine[input[3]];
-        secondLine[input[3]] = temp[input[1]];
 
         try
         {
+            String[] firstLine = list.get(input[0]);
+            String[] secondLine = list.get(input[2]);
+            String[] temp = firstLine.clone();
+
+            firstLine[input[1]] = secondLine[input[3]];
+            secondLine[input[3]] = temp[input[1]];
+
             list.set(input[0], firstLine);
             list.set(input[2], secondLine);
         }
         catch (Exception e)
         {
             System.out.println(e);
-            return false;
+            return isSaved;
         }
 
-        for(String[] arr : list)
-        {
-            System.out.println(Arrays.toString(arr));
-        }
+        printList(list);
+        isSaved = saveList(isSaved);
 
-        if(isSaved)
-        {
-            isSaved = false;
-        }
         return isSaved;
     }
 
@@ -189,11 +171,10 @@ public class FileWork
 
     public boolean saveToFile(String path, List<String[]> list)
     {
-        try
+        try(FileWriter writer = new FileWriter(path))
         {
-            if(FValidation(list))
+            if(listValidation(list))
             {
-                FileWriter writer = new FileWriter(path);
                 for (String[] line : list)
                 {
                     String append = "";
@@ -205,7 +186,6 @@ public class FileWork
                     writer.write("\n");
                 }
                 writer.flush();
-                writer.close();
                 System.out.println("File saved successfully");
             }
             else
@@ -220,5 +200,22 @@ public class FileWork
             return false;
         }
         return true;
+    }
+
+    public void printList(List<String[]> list)
+    {
+        for(String[] arr : list)
+        {
+            System.out.println(Arrays.toString(arr));
+        }
+    }
+
+    public boolean saveList(boolean isSaved)
+    {
+        if(isSaved)
+        {
+            isSaved = false;
+        }
+        return isSaved;
     }
 }

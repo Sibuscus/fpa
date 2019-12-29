@@ -40,3 +40,12 @@
 > Started adding specific exception handlers
 * File path input now asks for a file repeatedly until a correct path is input
 * File will not save if the text file is Invalid.
+
+## V0.8
+* Created a new separate menu for CRUD operations
+* Added CRUD operations: read & modify a number from a line
+* Optimization & readability notes:
+> Removed while loops
+> New method for printing file contents
+> New method for changing isSaved boolean for saving files 
+* Improved file saving
