@@ -49,3 +49,8 @@
 > New method for printing file contents
 > New method for changing isSaved boolean for saving files 
 * Improved file saving
+
+## V0.8 update
+* Readded while loops with a different and a better structure
+* Optimization & readability notes:
+> New method for checking if something is out of array's bounds (Used in while loop)

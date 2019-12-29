@@ -78,12 +78,22 @@ public class FileWork
         }
         try
         {
-            //User input
-            System.out.println("Enter a line you'd like to replace:");
-            input[0] = s.nextInt();
-            System.out.println("Enter a line you'd like to replace it with:");
-            input[1] = s.nextInt();
-            System.out.println("---------------------------------------------------------------------------");
+            while (true)
+            {
+                //User input
+                System.out.println("Enter a line you'd like to replace:");
+                input[0] = s.nextInt();
+                System.out.println("Enter a line you'd like to replace it with:");
+                input[1] = s.nextInt();
+                System.out.println("---------------------------------------------------------------------------");
+                if (isInRange(list, input[0]) && isInRange(list, input[1]))
+                {
+                    break;
+                } else
+                {
+                    System.out.println("You've entered values that are out of the file's line size");
+                }
+            }
         }
         catch (Exception e)
         {
@@ -117,15 +127,26 @@ public class FileWork
         printList(list);
         try
         {
-            //User input
-            System.out.print("Enter a line for the first number:");
-            input[0] = s.nextInt();
-            System.out.print("Enter the index of the number in " +input[0] +":");
-            input[1] = s.nextInt();
-            System.out.print("Enter a line for the second number:");
-            input[2] = s.nextInt();
-            System.out.print("Enter the index of the number in " +input[2] +":");
-            input[3] = s.nextInt();
+            while (true)
+            {
+                //User input
+                System.out.print("Enter a line for the first number:");
+                input[0] = s.nextInt();
+                System.out.print("Enter the index of the number in " + input[0] + ":");
+                input[1] = s.nextInt();
+                System.out.print("Enter a line for the second number:");
+                input[2] = s.nextInt();
+                System.out.print("Enter the index of the number in " + input[2] + ":");
+                input[3] = s.nextInt();
+                if(isInRange(list, input[0], input[1]) && isInRange(list, input[2], input[3]))
+                {
+                    break;
+                }
+                else
+                {
+                    System.out.println("You've entered values that are out of the file's line size");
+                }
+            }
         }
         catch (Exception e)
         {
@@ -137,8 +158,6 @@ public class FileWork
         //1         -   number 1
         //2         -   line 2
         //3         -   number 2
-
-
 
         try
         {
@@ -197,6 +216,37 @@ public class FileWork
         catch(Exception e)
         {
             System.out.println(e);
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isInRange(List<String[]> list, int line)
+    {
+        if (line < 0 || line >= list.size())
+        {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isInRange(List<String[]> list, int line, int index)
+    {
+        String[] Line = list.get(line);
+        Integer size = 0, i;
+
+        if(line < 0 || line >= list.size())
+        {
+            return false;
+        }
+
+        for(i = 0; i < Line.length; i++)
+        {
+            size++;
+        }
+
+        if(index < 0 || index >= size)
+        {
             return false;
         }
         return true;

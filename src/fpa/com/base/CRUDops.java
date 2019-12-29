@@ -21,14 +21,11 @@ public class CRUDops
         //User input
         try
         {
-            do
-            {
-                System.out.print("Enter a line to read from:");
-                input[0] = s.nextInt();
-                System.out.print("Enter the index of the number in that line:");
-                input[1] = s.nextInt();
-            }while (input[0] < 0 || input[0] > list.size() || input[1] < 0);
-                System.out.println("---------------------------------------------------------------------------");
+            System.out.print("Enter a line to read from:");
+            input[0] = s.nextInt();
+            System.out.print("Enter the index of the number in that line:");
+            input[1] = s.nextInt();
+            System.out.println("---------------------------------------------------------------------------");
         }
         catch (Exception e)
         {
@@ -44,6 +41,7 @@ public class CRUDops
         catch (Exception e)
         {
             System.out.println(e);
+            return isSaved;
         }
 
         fileWork.printList(list);
@@ -66,16 +64,13 @@ public class CRUDops
 
         try
         {
-            do
-            {
-                System.out.print("Enter a line to modify a number from: ");
-                input[0] = s.nextInt();
-                System.out.print("Enter the index of the number in that line: ");
-                input[1] = s.nextInt();
-                System.out.print("Enter the new replacement for that number:");
-                input[2] = s.nextInt();
-                System.out.println("---------------------------------------------------------------------------");
-            }while (input[0] < 0 || input[0] >= list.size() || input[1] < 0);
+            System.out.print("Enter a line to modify a number from: ");
+            input[0] = s.nextInt();
+            System.out.print("Enter the index of the number in that line: ");
+            input[1] = s.nextInt();
+            System.out.print("Enter the new replacement for that number:");
+            input[2] = s.nextInt();
+            System.out.println("---------------------------------------------------------------------------");
         }
         catch (Exception e)
         {
@@ -96,6 +91,7 @@ public class CRUDops
         catch (Exception e)
         {
             System.out.println(e);
+            return isSaved;
         }
 
         fileWork.printList(list);
