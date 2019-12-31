@@ -44,6 +44,7 @@ public class CRUDops
         catch (Exception e)
         {
             System.out.println(e);
+            return isSaved;
         }
         //List work
         line = list.get(input[0]);
@@ -63,7 +64,7 @@ public class CRUDops
 
         list.set(input[0], newLine);
         fileWork.printList(list);
-        fileWork.saveList(isSaved);
+        isSaved = fileWork.saveList(isSaved);
 
         return isSaved;
     }
@@ -117,9 +118,6 @@ public class CRUDops
             return isSaved;
         }
 
-        fileWork.printList(list);
-        fileWork.saveList(isSaved);
-
         return isSaved;
     }
 
@@ -168,10 +166,6 @@ public class CRUDops
             line = list.get(input[0]);
             line[input[1]] = Integer.toString(input[2]);
             list.set(input[0], line);
-            for(String[] arr : list)
-            {
-                System.out.println(Arrays.toString(arr));
-            }
         }
         catch (Exception e)
         {
@@ -180,7 +174,7 @@ public class CRUDops
         }
 
         fileWork.printList(list);
-        fileWork.saveList(isSaved);
+        isSaved = fileWork.saveList(isSaved);
         return isSaved;
     }
 
@@ -237,7 +231,7 @@ public class CRUDops
 
         list.set(input[0], newLine);
         fileWork.printList(list);
-        fileWork.saveList(isSaved);
+        isSaved = fileWork.saveList(isSaved);
 
         return isSaved;
     }

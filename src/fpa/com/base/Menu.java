@@ -39,7 +39,7 @@ public class Menu
         String path;
         String line;
         String[] lineNum;
-        boolean isSaved = false;
+        boolean isSaved = true;
 
         Scanner s = new Scanner(System.in);
         FileWork fw = new FileWork();
@@ -108,7 +108,7 @@ public class Menu
                     isSaved = fw.numberSwitcher(currentList, isSaved);
                     break;
                 case 4:
-                    crudMenu(currentList, isSaved);
+                    isSaved = crudMenu(currentList, isSaved);
                     break;
                 case 5:
                     isSaved = fw.saveToFile(path, currentList);
@@ -146,7 +146,7 @@ public class Menu
         return true;
     }
 
-    private static void crudMenu(List<String[]> list, boolean isSaved)
+    private static boolean crudMenu(List<String[]> list, boolean isSaved)
     {
         Integer choice;
 
@@ -186,5 +186,6 @@ public class Menu
                     System.out.println("Invalid choice");
             }
         }while (choice != 5);
+        return isSaved;
     }
 }

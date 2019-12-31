@@ -63,3 +63,7 @@
 > Edited isInRange method to be able to rezise lines accordingly
 
 ## All version from here on now will be bug fixes until a stable version (V1.0) is reached
+
+## V0.9a
+* Fixed a couple of bugs and the saving system
+* Cleaned the code up a bit
