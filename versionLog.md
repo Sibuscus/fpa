@@ -61,3 +61,5 @@
 * Misc:
 > Added while loops for CRUD operations
 > Edited isInRange method to be able to rezise lines accordingly
+
+## All version from here on now will be bug fixes until a stable version (V1.0) is reached
