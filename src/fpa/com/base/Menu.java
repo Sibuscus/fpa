@@ -169,7 +169,7 @@ public class Menu
             switch (choice)
             {
                 case 1:
-
+                    isSaved = co.addNumber(list, isSaved);
                     break;
                 case 2:
                     isSaved = co.readNumber(list, isSaved);
@@ -178,6 +178,7 @@ public class Menu
                     isSaved = co.modifyNumber(list, isSaved);
                     break;
                 case 4:
+                    isSaved = co.removeNumber(list, isSaved);
                     break;
                 case 5:
                     break;

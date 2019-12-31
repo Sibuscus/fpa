@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class FileWork
 {
+
     public boolean listValidation(List<String[]> file, boolean isSaved)
     {
         //Variables
@@ -138,7 +139,7 @@ public class FileWork
                 input[2] = s.nextInt();
                 System.out.print("Enter the index of the number in " + input[2] + ":");
                 input[3] = s.nextInt();
-                if(isInRange(list, input[0], input[1]) && isInRange(list, input[2], input[3]))
+                if(isInRange(list, input[0], input[1], false) && isInRange(list, input[2], input[3], false))
                 {
                     break;
                 }
@@ -230,17 +231,26 @@ public class FileWork
         return true;
     }
 
-    private boolean isInRange(List<String[]> list, int line, int index)
+    public boolean isInRange(List<String[]> list, int line, int index, boolean isAdded)
     {
         String[] Line = list.get(line);
-        Integer size = 0, i;
+        Integer size = 0, i, lineSize;
 
         if(line < 0 || line >= list.size())
         {
             return false;
         }
 
-        for(i = 0; i < Line.length; i++)
+        if(isAdded) //If add/remove number menu is chosen -> Ability to add 1 number at the end of the line
+        {
+            lineSize = Line.length +1;
+        }
+        else
+        {
+            lineSize = Line.length;
+        }
+
+        for(i = 0; i < lineSize; i++)
         {
             size++;
         }

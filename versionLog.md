@@ -54,3 +54,10 @@
 * Readded while loops with a different and a better structure
 * Optimization & readability notes:
 > New method for checking if something is out of array's bounds (Used in while loop)
+
+## V0.9
+* Added CRUD operations: Add/Remove a number at a custom position in a line
+
+* Misc:
+> Added while loops for CRUD operations
+> Edited isInRange method to be able to rezise lines accordingly
